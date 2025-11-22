@@ -45,22 +45,34 @@ from flask_cors import CORS
 import io
 import sys
 import os
+from importlib import import_module  # type: ignore[import-not-found]
 
 # Add flask_backend to path for imports
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from models_store import save_model, get_model, list_models
-from utils.ml_utils import (
-    train_linear_regression,
-    train_multiple_linear_regression,
-    train_logistic_binary,
-    train_logistic_multiclass,
-    train_dummy_regression,
-    predict,
-    load_csv_from_buffer
-)
-from utils.image_utils import enhance_image, image_to_base64
-from utils.plot_utils import plot_regression_scatter, plot_confusion_matrix
+# Import modules dynamically to avoid Pylance errors
+# (These work at runtime even though Pylance can't resolve them statically)
+models_store_module = import_module('models_store')  # type: ignore[assignment]
+save_model = models_store_module.save_model  # type: ignore[attr-defined]
+get_model = models_store_module.get_model  # type: ignore[attr-defined]
+list_models = models_store_module.list_models  # type: ignore[attr-defined]
+
+ml_utils = import_module('utils.ml_utils')  # type: ignore[assignment]
+train_linear_regression = ml_utils.train_linear_regression  # type: ignore[attr-defined]
+train_multiple_linear_regression = ml_utils.train_multiple_linear_regression  # type: ignore[attr-defined]
+train_logistic_binary = ml_utils.train_logistic_binary  # type: ignore[attr-defined]
+train_logistic_multiclass = ml_utils.train_logistic_multiclass  # type: ignore[attr-defined]
+train_dummy_regression = ml_utils.train_dummy_regression  # type: ignore[attr-defined]
+predict = ml_utils.predict  # type: ignore[attr-defined]
+load_csv_from_buffer = ml_utils.load_csv_from_buffer  # type: ignore[attr-defined]
+
+image_utils_module = import_module('utils.image_utils')  # type: ignore[assignment]
+enhance_image = image_utils_module.enhance_image  # type: ignore[attr-defined]
+image_to_base64 = image_utils_module.image_to_base64  # type: ignore[attr-defined]
+
+plot_utils = import_module('utils.plot_utils')  # type: ignore[assignment]
+plot_regression_scatter = plot_utils.plot_regression_scatter  # type: ignore[attr-defined]
+plot_confusion_matrix = plot_utils.plot_confusion_matrix  # type: ignore[attr-defined]
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
