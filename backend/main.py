@@ -52,7 +52,7 @@ class PredictRequest(BaseModel):
 async def health():
     return {
         "status": "ok",
-        "available_models": list(store.MODEL_STORE.keys()),
+        "available_models": list(store.MODEL_STORE.keys()),  # type: ignore[attr-defined]
         "note": "Train models using /train-* endpoints."
     }
 
@@ -72,7 +72,7 @@ async def train_linear(file: Optional[UploadFile] = None):
 
         result = train_utils.train_linear_regression(df)
 
-        store.MODEL_STORE["linear"] = {
+        store.MODEL_STORE["linear"] = {  # type: ignore[attr-defined]
             "model": result["model_obj"],
             "n_features": result["n_features"]
         }
@@ -102,7 +102,7 @@ async def train_multiple_linear(file: Optional[UploadFile] = None):
 
         result = train_utils.train_multiple_linear_regression(df)
 
-        store.MODEL_STORE["multiple"] = {
+        store.MODEL_STORE["multiple"] = {  # type: ignore[attr-defined]
             "model": result["model_obj"],
             "n_features": result["n_features"]
         }
@@ -134,7 +134,7 @@ async def train_logistic_binary(file: Optional[UploadFile] = None):
 
         result = train_utils.train_logistic_classification(df, multiclass=False)
 
-        store.MODEL_STORE["logistic_binary"] = {
+        store.MODEL_STORE["logistic_binary"] = {  # type: ignore[attr-defined]
             "model": result["model_obj"],
             "n_features": result["n_features"]
         }
@@ -166,7 +166,7 @@ async def train_logistic_multiclass(file: Optional[UploadFile] = None):
 
         result = train_utils.train_logistic_classification(df, multiclass=True)
 
-        store.MODEL_STORE["logistic_multi"] = {
+        store.MODEL_STORE["logistic_multi"] = {  # type: ignore[attr-defined]
             "model": result["model_obj"],
             "n_features": result["n_features"]
         }
@@ -196,7 +196,7 @@ async def train_dummy(file: Optional[UploadFile] = None):
 
         result = train_utils.train_dummy_model(df)
 
-        store.MODEL_STORE["dummy"] = {
+        store.MODEL_STORE["dummy"] = {  # type: ignore[attr-defined]
             "model": result["model_obj"],
             "n_features": result["n_features"]
         }

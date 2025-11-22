@@ -40,9 +40,8 @@ Example curl commands:
     curl -X POST http://127.0.0.1:5000/enhance/image \
       -F "file=@image.jpg"
 """
-from flask import Flask, jsonify, request, send_file
+from flask import Flask, jsonify, request
 from flask_cors import CORS
-import io
 import sys
 import os
 from importlib import import_module  # type: ignore[import-not-found]

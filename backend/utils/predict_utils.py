@@ -47,7 +47,7 @@ def predict_from_store(model_name: str, input_list: List[float]) -> Any:
     # cast numpy types
     if hasattr(out, 'item'):
         try:
-            out = out.item()
+            out = out.item()  # type: ignore[attr-defined]
         except Exception:
             pass
     return out
