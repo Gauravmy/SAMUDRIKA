@@ -22,7 +22,17 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["*.tsx", "*.ts", "components/**", "pages/**", "services/**"],
+  "include": [
+    "index.tsx",
+    "App.tsx",
+    "types.ts",
+    "vite.config.ts",
+    "components/EdgePanel.tsx",
+    "components/NetworkChart.tsx",
+    "components/CompareSlider.tsx",
+    "components/MetricsCard.tsx",
+    "components/ThreeScene.tsx"
+  ],
   "exclude": ["node_modules", "dist", "build", "flask_backend", "backend"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
