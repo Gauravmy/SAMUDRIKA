@@ -1,0 +1,15 @@
+flask_backend/
+backend/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+Procfile
+requirements.txt
+pytest.ini
+pyrightconfig.json
+DEPLOYMENT.md
