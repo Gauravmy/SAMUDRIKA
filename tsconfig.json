@@ -22,6 +22,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["*.tsx", "*.ts", "components/**", "pages/**", "services/**"],
+  "exclude": ["node_modules", "dist", "build", "flask_backend", "backend"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

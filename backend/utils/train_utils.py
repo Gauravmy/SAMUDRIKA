@@ -187,7 +187,7 @@ def train_dummy_model(df: Optional[pd.DataFrame] = None) -> dict:
         def predict_fn(X_in):
             return 2.0 * X_in[:, 0] + 1.0
         # make predictions on a test split
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)  # pylint: disable=unused-variable
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)  # noqa: F841
         y_pred = predict_fn(X_test)
         mse = float(mean_squared_error(y_test, y_pred))
         graph = create_scatter_png_base64(y_test, y_pred, title='Dummy Regression: y_test vs y_pred')
@@ -205,7 +205,7 @@ def train_dummy_model(df: Optional[pd.DataFrame] = None) -> dict:
         def predict_fn(X_in):
             s = X_in.sum(axis=1)
             return (s > np.median(s)).astype(int)
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)  # pylint: disable=unused-variable
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)  # noqa: F841
         y_pred = predict_fn(X_test)
         acc = float(accuracy_score(y_test, y_pred))
         graph = create_scatter_png_base64(y_test, y_pred, title='Dummy Classification: y_test vs y_pred')
